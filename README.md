@@ -29,4 +29,12 @@ python build_schemas.py
 
 ### Schema Anonymization Procedure
 Next we will create the different variants of the original datasets with varying levels of ambiguity. Optionally you can run `token_level_scaling.py` beforehand. This will produce the file `/configs/token_ambiguity_anchors.json`, which contains the anchor values (`anchor_clear ~ 0.0`, `anchor_noise ~ 0.6`) that are used to linearly scale the ambiguity score (see section 4.2 in the paper). Nevertheless, this step is optional as that was already created.  
-Line Break
+
+In order to generate a modified dataset variant you can run:
+```
+python anonymize_schemas.py \
+    --dataset "spider" \
+    --level "L1"
+```
+Select the specific dataset (`spider`, `bird`, `kaggledbqa`) as well as the level of obfuscation (`L1`, `L2`, `L3`). This generates the entire modified dataset in `/data/datasets/` including sqlite-databases and the gold queries of the particular development set.
+
