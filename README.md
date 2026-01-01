@@ -24,7 +24,8 @@ Follow the steps down below to recreate the experiment.
 ### Schema Representation
 First we need to build the schema representation objects for the original datasets' databases using `build_schemas.py`. This will store each database schema of each dataset (Spider, BIRD-SQL, KaggleDBQA) as a json-file in `data/schemas/`
 ```
-python build_schemas.py
+python build_schemas.py \
+    --dataset "spider"
 ```
 
 ### Schema Anonymization Procedure
@@ -36,5 +37,53 @@ python anonymize_schemas.py \
     --dataset "spider" \
     --level "L1"
 ```
-Select the specific dataset (`spider`, `bird`, `kaggledbqa`) as well as the level of obfuscation (`L1`, `L2`, `L3`). This generates the entire modified dataset in `/data/datasets/` including sqlite-databases and the gold queries of the particular development set.
+Select the specific dataset (`spider`, `bird`, `kaggledbqa`) as well as the level of obfuscation (`L1`, `L2`, `L3`). This creates a mapping connecting each original name to the anonymized string (in `/data/mappings/`) and generates the entire modified dataset (in `/data/datasets/`) including sqlite-databases and the gold queries of the particular development set.  
+Since we want to use the newly constructed database schema for further processing we need to run `build_schemas.py` again. This time, set the `level` parameter accordingly:
+```
+python build_schemas.py \
+    --dataset "spider" \
+    --level "L1"
+```
+
+### Schema Ambiguity Score (SAS)
+Once you have created all dataset versions you can calculate their specific Schema Ambiguity Scores. The SAS is designed to capture how easily schema object names can be grounded in natural language, independently of any particular model or task performance.  
+Just run:
+```
+python calculate_sas.py
+```
+This will output the SAS for each dataset variant including the original. We report these scores in out paper:
+<table>
+  <thead>
+    <tr>
+      <th>Dataset</th>
+      <th>L0</th>
+      <th>L1</th>
+      <th>L2</th>
+      <th>L3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Spider</td>
+      <td>.031</td>
+      <td>.071</td>
+      <td>.122</td>
+      <td>.217</td>
+    </tr>
+    <tr>
+      <td>BIRD</td>
+      <td>.112</td>
+      <td>.208</td>
+      <td>.193</td>
+      <td>.256</td>
+    </tr>
+    <tr>
+      <td>KaggleDBQA</td>
+      <td>.171</td>
+      <td>.244</td>
+      <td>.211</td>
+      <td>.297</td>
+    </tr>
+  </tbody>
+</table>
 
