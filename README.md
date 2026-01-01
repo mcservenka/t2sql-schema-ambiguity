@@ -87,3 +87,114 @@ This will output the SAS for each dataset variant including the original. We rep
   </tbody>
 </table>
 
+### Prompt Model
+Now using our augmented versions of Spider, BIRD-SQL and KaggleDBQA, we can start prompting the models. In terms of LLMs utilized within this study, one open- (`gpt-5.2` via OpenAI API) and one closed-source (`llama-3.3-70B` via TogetherAI API) LLM were tested, which is common in this field of research. To generate the results in `data/results/` run the following command for each variant:
+```
+python prompt_model.py \
+    --dataset "spider" \
+    --level "L0" \
+    --model "gpt-5.2" \
+```
+Make sure that the dataset variant you select really exists in `data/datasets/` and `data/schemas/`, respectively.
+
+### Evaluation
+Eventually, you can evaluate the responses by running `evaluate_results.py`. This will add the evaluation scores to your response objects and create a new file in `data/results/` and print the evaluation results to the console.
+```
+python evaluate_results.py \
+    --dataset "spider" \
+    --level "L0" \
+    --model "gpt-5.2" \
+```
+Again make sure the results for the selected variants were generated beforehand.
+
+## Experiment Results
+Down below we illustrated the official results of our paper. Please note that - although our schema schema anonymizer is inherently deterministic - the results may vary after rerunning the experiment due to the inherent stochasticity of the LLM. For detailed evaluation results feel free to check out section 7 of the paper.
+
+<table>
+  <thead>
+    <tr>
+      <th>Dataset</th>
+      <th>Level</th>
+      <th>GPT-5.2</th>
+      <th>Llama-3.3-70B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Spider -->
+    <tr>
+      <td><strong>Spider</strong></td>
+      <td>L0</td>
+      <td>76.79</td>
+      <td>76.21</td>
+    </tr>
+    <tr>
+      <td><strong>Spider</strong></td>
+      <td>L1</td>
+      <td>76.02</td>
+      <td>74.37</td>
+    </tr>
+    <tr>
+      <td><strong>Spider</strong></td>
+      <td>L2</td>
+      <td>75.44</td>
+      <td>73.98</td>
+    </tr>
+    <tr>
+      <td><strong>Spider</strong></td>
+      <td>L3</td>
+      <td>76.40</td>
+      <td>71.76</td>
+    </tr>
+    <!-- BIRD -->
+    <tr>
+      <td><strong>BIRD</strong></td>
+      <td>L0</td>
+      <td>36.57</td>
+      <td>35.72</td>
+    </tr>
+    <tr>
+      <td><strong>BIRD</strong></td>
+      <td>L1</td>
+      <td>35.01</td>
+      <td>33.96</td>
+    </tr>
+    <tr>
+      <td><strong>BIRD</strong></td>
+      <td>L2</td>
+      <td>34.68</td>
+      <td>34.49</td>
+    </tr>
+    <tr>
+      <td><strong>BIRD</strong></td>
+      <td>L3</td>
+      <td>33.38</td>
+      <td>33.05</td>
+    </tr>
+    <!-- KaggleDBQA -->
+    <tr>
+      <td><strong>KaggleDBQA</strong></td>
+      <td>L0</td>
+      <td>19.69</td>
+      <td>43.98</td>
+    </tr>
+    <tr>
+      <td><strong>KaggleDBQA</strong></td>
+      <td>L1</td>
+      <td>19.91</td>
+      <td>42.23</td>
+    </tr>
+    <tr>
+      <td><strong>KaggleDBQA</strong></td>
+      <td>L2</td>
+      <td>19.26</td>
+      <td>36.54</td>
+    </tr>
+    <tr>
+      <td><strong>KaggleDBQA</strong></td>
+      <td>L3</td>
+      <td>19.04</td>
+      <td>43.11</td>
+    </tr>
+  </tbody>
+</table>
+
