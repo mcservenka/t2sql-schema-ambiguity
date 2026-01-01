@@ -198,3 +198,10 @@ Down below we illustrated the official results of our paper. Please note that - 
   </tbody>
 </table>
 
+## Citation
+```citation
+@article{schema-size-matters,
+    author  =   {Cservenka Markus},
+    title   =   {Schema Ambiguity in Text-to-SQL: Measurement, Benchmarks, and Robustness},
+    year    =   {2025}
+}
