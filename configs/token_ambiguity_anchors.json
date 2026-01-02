@@ -1,0 +1,9 @@
+{
+    "seed": 42,
+    "N_CLEAR": 5000,
+    "N_NOISE": 5000,
+    "A_clear_mean": 0.01,
+    "A_clear_std": 0.0,
+    "A_noise_mean": 0.6014940846264363,
+    "A_noise_std": 0.08975153647388316
+}
