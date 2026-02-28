@@ -1,8 +1,6 @@
 # Schema Ambiguity in Text-to-SQL: Measurement, Benchmarks, and Robustness
 
-Although strong performance has been achieved on Text-to-SQL established benchmarks, these benchmarks largely assume linguistically explicit and human-readable database schemas. In real-world deployments, however, schema object names are often abbreviated or compressed, which leads to linguistic ambiguity and weakens lexical alignment between natural language questions and database structures. This repository provides the source code for the paper **On the Impact of Linguistic Schema Ambiguity in Text-to-SQL**, which addresses this gap by introducing a deterministic schema transformation pipeline as well as the Schema Ambiguity Score (SAS), an embedding-based metric that measures the linguistic explicitness of schema object names. On the basis of these contributions multi-level variants of Spider, BIRD-SQL, and KaggleDBQA are evaluated using leading LLMs. In order to reproduce the results, follow the instructions below.
-
->Cservenka, Markus. "On the Impact of Linguistic Schema Ambiguity in Text-to-SQL", 2026.
+Although strong performance has been achieved on Text-to-SQL established benchmarks, these benchmarks largely assume linguistically explicit and human-readable database schemas. In real-world deployments, however, schema object names are often abbreviated or compressed, which leads to linguistic ambiguity and weakens lexical alignment between natural language questions and database structures. This repository provides the source code for a paper, which addresses this gap by introducing a deterministic schema transformation pipeline as well as the Schema Ambiguity Score (SAS), an embedding-based metric that measures the linguistic explicitness of schema object names. On the basis of these contributions multi-level variants of Spider, BIRD-SQL, and KaggleDBQA are evaluated using leading LLMs. In order to reproduce the results, follow the instructions below.
 
 Link to paper following soon...
 
@@ -198,11 +196,3 @@ Down below we illustrated the official results of our paper. Please note that - 
     </tr>
   </tbody>
 </table>
-
-## Citation
-```citation
-@article{schema-size-matters,
-    author  =   {Cservenka Markus},
-    title   =   {Schema Ambiguity in Text-to-SQL: Measurement, Benchmarks, and Robustness},
-    year    =   {2025}
-}
